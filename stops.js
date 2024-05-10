@@ -16,7 +16,8 @@ function setup(){
 	const response = await fetch(url);
 	const stops = await response.json();
 	
-    Object.entries(stops).forEach((stop) => {
+    Object.entries(stops).forEach((entry) => {
+		const [id, stop] = entry;
 		//{"code": "02027-2", "code_gare": "02027", "uic_code": "0087733667", "dtfinval": null, "alias_libelle_noncontraint": "Mareil-Marly T13", "adresse_cp": "78750", "commune_code": "367", "commune_libellemin": "Mareil-Marly", "departement_numero": "78", "departement_libellemin": "Yvelines", "longitude_entreeprincipale_wgs84": null, "latitude_entreeprincipale_wgs84": null, "segmentdrg_libelle": null, "niveauservice_libelle": null, "rg_libelle": "Gares C Ile-de-France", "gare_alias_libelle_noncontraint": "Mareil-Marly", "gare_alias_libelle_fronton": "Mareil-Marly", "gare_agencegc_libelle": "DGIF", "gare_regionsncf_libelle": "REGION DE PARIS SAINT-LAZARE", "gare_ug_libelle": null, "gare_ut_libelle": "MAREIL MARLY GARE", "gare_nbpltf": 2, "tvs": null, "wgs_84": null}
 		if (stop.longitude_entreeprincipale_wgs84){
 			let my_icon = L.icon({iconUrl: `./departure_board.png`,iconSize: [24, 24], iconAnchor: [12,24]});
@@ -30,7 +31,7 @@ function setup(){
   }
 
 async function _showConnections(e){
-	L.popup().setLatLng([e.latlng.lat,e.latlng.lng]).setContent(e.properties.gare_ut_libelle).openOn(map); 
+	L.popup().setLatLng([e.latlng.lat,e.latlng.lng]).setContent(e.sourceTarget.properties.gare_ut_libelle).openOn(map); 
 }
 
 function formatTime(timestamp){
