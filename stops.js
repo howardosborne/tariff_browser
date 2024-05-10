@@ -55,9 +55,7 @@ async function _showConnections(e){
 				<div class="card">
 				<div class="card-body">
 				<ul class="list-group list-group-flush">
-				<li class="list-group-item">${tariff.destination}</li>
-				<li class="list-group-item">${tariff.prix_eur}</li>
-				<li class="list-group-item">${tariff.type_tarif}</li>
+				<li class="list-group-item">${tariff.destination}: ${tariff.prix_eur}</li>
 				</ul>
 				</div>
 				</div>`;
